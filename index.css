@@ -3,7 +3,7 @@
         /* padding: 10px; */
         font-family: 'Inter', Arial, Helvetica, sans-serif;
         min-width: 550px;
-        overflow: auto;
+        overflow: visible;
         /* height: 730px; */
     }
 
