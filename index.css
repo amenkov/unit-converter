@@ -56,7 +56,7 @@
     .data {
         margin-top: 0px;
         margin-bottom: 0px;
-        min-height: 100vh;
+        /* min-height: 100vh; */
         background: #1F2937;
         padding: 50px 25px;
     }
