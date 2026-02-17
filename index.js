@@ -4,7 +4,6 @@
 1 kilogram = 2.204 pound
 */
 
-
 const inputEl = document.getElementById("input-el")
 const convertBtn = document.getElementById("convert-btn")
 
@@ -12,31 +11,50 @@ const lengthEl = document.getElementById("length")
 const volumeEl = document.getElementById("volume")
 const massEl = document.getElementById("mass")
 
-const elemetsList = [lengthEl, volumeEl, massEl]
+const localStorageKey = "unit-converter"
 
-function convert() {
+const initialUnitState = {
+    unit: 20
+}
 
-    const inputData = inputEl.value
+const fixedLimit = 3
 
-    if(!inputData || !(Number(inputData))) {
+let initialValue = JSON.parse(localStorage.getItem(localStorageKey))
+
+if (initialValue) {
+    initialValue = initialValue.unit
+    inputEl.value = initialValue
+    convert(initialValue)
+}
+
+function convert(value) {
+
+    if (!value || !(Number(value))) {
         return
     }
 
-    const feets = (Number(inputData) * 3.281).toFixed(3)
-    const meters = (Number(inputData) / 3.281).toFixed(3)
+    const feets = (Number(value) * 3.281).toFixed(fixedLimit)
+    const meters = (Number(value) / 3.281).toFixed(fixedLimit)
 
-    const gallons = (Number(inputData) * 0.264).toFixed(3)
-    const liters = (Number(inputData) / 0.264).toFixed(3)
+    const gallons = (Number(value) * 0.264).toFixed(fixedLimit)
+    const liters = (Number(value) / 0.264).toFixed(fixedLimit)
 
-    const pounds = (Number(inputData) * 2.204).toFixed(3)
-    const kilos = (Number(inputData) / 2.204).toFixed(3)
+    const pounds = (Number(value) * 2.204).toFixed(fixedLimit)
+    const kilos = (Number(value) / 2.204).toFixed(fixedLimit)
 
-    lengthEl.textContent = `${inputData} meters = ${feets} feet | ${inputData} feet = ${meters} meters`
-    volumeEl.textContent = `${inputData} liters = ${gallons} gallons | ${inputData} gallons = ${liters} liters`
-    massEl.textContent = `${inputData} kilos = ${pounds} pounds | ${inputData} pounds = ${kilos} kilos`
+    lengthEl.textContent = `${value} meters = ${feets} feet | ${value} feet = ${meters} meters`
+    volumeEl.textContent = `${value} liters = ${gallons} gallons | ${value} gallons = ${liters} liters`
+    massEl.textContent = `${value} kilos = ${pounds} pounds | ${value} pounds = ${kilos} kilos`
+
+    saveState(value)
 
 }
 
-convertBtn.addEventListener("click", function() {
-    convert()
+convertBtn.addEventListener("click", function () {
+    convert(inputEl.value)
 })
+
+function saveState(value) {
+    initialUnitState.unit = value
+    localStorage.setItem(localStorageKey, JSON.stringify(initialUnitState))
+}
