@@ -23,7 +23,11 @@ let initialValue = JSON.parse(localStorage.getItem(localStorageKey))
 
 if (initialValue) {
     initialValue = initialValue.unit
-    inputEl.value = initialValue
+    setInputValue(initialValue)
+    convert(initialValue)
+} else {
+    initialValue = initialUnitState.unit
+    setInputValue(initialValue)
     convert(initialValue)
 }
 
@@ -57,4 +61,8 @@ convertBtn.addEventListener("click", function () {
 function saveState(value) {
     initialUnitState.unit = value
     localStorage.setItem(localStorageKey, JSON.stringify(initialUnitState))
+}
+
+function setInputValue(value) {
+    inputEl.value = value
 }
