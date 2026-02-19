@@ -2,14 +2,16 @@ body {
   margin: 0;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   width: 550px;
-  overflow: hidden;
 }
 
 .hero {
-  text-align: center;
   background: #6943ff;
   color: #ffffff;
   padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #input-el {
@@ -18,12 +20,12 @@ body {
   border-radius: 5px;
   color: #ffffff;
   font-weight: bolder;
-  font-size: 58px;
+  font-size: 3.75rem;
   text-align: center;
-  width: 117px;
-  height: 83px;
+  min-width: 117px;
   padding: 5px 10px;
-  box-sizing: border-box;
+  field-sizing: content;
+
 }
 
 #input-el:focus {
@@ -62,9 +64,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 90px;
+
   margin: 0 auto 15px;
+  padding: 15px;
   border-radius: 5px;
 }
 
